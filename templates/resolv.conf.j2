@@ -1,0 +1,7 @@
+{{ ansible_managed }}
+{% for value in dns_nameservers %}
+nameserver {{ value }}
+{% endfor %}
+{% if dns_search is defined %}
+search {{ dns_search }}
+{% endif %}
