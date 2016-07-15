@@ -1,4 +1,15 @@
 ---
+- name: Get if resolv.conf is a symbolic link
+  stat:
+    path: /etc/resolv.conf
+  register: resolv_conf_stat
+
+- name: Remove resolv.conf if it is a symbolic link
+  file:
+    path: /etc/resolv.conf
+    state: absent
+  when: resolv_conf_stat.stat.islnk is defined and resolv_conf_stat.stat.islnk
+
 - name: Set resolv.conf
   template:
     src: resolv.conf.j2

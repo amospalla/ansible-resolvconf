@@ -5,6 +5,8 @@
 
 Set /etc/resolv.conf file.
 
+Warning: this role ensures that /etc/resolv.conf is not a symbolik link. In the case it is a symbolik link it first deletes it before writing the new resolv.conf file.
+
 ## Variables
 
 - _dns_nameservers_: list with name servers.
